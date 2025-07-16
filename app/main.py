@@ -25,13 +25,6 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: Session = De
     if user is None:
         raise HTTPException(status_code=401, detail="User not found")
     return user
-    
-# Убедитесь, что get_current_user определена выше всех эндпоинтов, где она используется
-
-# ... если get_current_user определена в этом файле, переместите её сюда ...
-
-# Если определена в другом файле, импортируйте:
-# from app.main import get_current_user
 
 def require_role(required_role: str):
     def role_checker(current_user: models.User = Depends(get_current_user)):
